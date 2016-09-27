@@ -144,7 +144,7 @@ jobs:
           - build-stemcell
     - task: tag
       file: bosh-src/ci/pipelines/stemcell/tasks/tag.yml
-    - put: bosh-src
+    - put: bosh-src-push
       params:
         repository: bosh-src
 
@@ -545,7 +545,7 @@ jobs:
             file: stemcell/*.tgz
 
 resources:
-  - name: bosh-src
+  - name: bosh-src-push
     type: git
     source:
       uri: git@github.com:mingxiao/bosh.git
@@ -602,6 +602,12 @@ resources:
         VJU7Ir5Xi4050VAUidMjTC0w112oV5ungSsDYJWlTPJQ6K54wRvlA9RNY0LoNc2u
         bXPZeKSr3h+nE3h280vRe2FPCJJ80I9IH5wZqwx9D0kCPju0Gi0jpZVklHMx7QU=
         -----END RSA PRIVATE KEY-----
+
+  - name: bosh-src
+    type: git
+    source:
+      uri: https://github.com/mingxiao/bosh.git
+      branch: develop
 #      branch: {{stemcell-branch}}
 
   - name: version
