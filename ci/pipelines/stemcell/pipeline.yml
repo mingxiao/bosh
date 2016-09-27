@@ -146,7 +146,7 @@ jobs:
       file: bosh-src/ci/pipelines/stemcell/tasks/tag.yml
     - put: bosh-src-push
       params:
-        repository: bosh-src
+        repository: bosh-src-tagged
 
   - name: publish-stemcells
     serial: true

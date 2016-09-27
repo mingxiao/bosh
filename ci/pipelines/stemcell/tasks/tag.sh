@@ -5,9 +5,8 @@ set -u
 
 export VERSION=$( cat version/number | sed 's/\.0$//;s/\.0$//' )
 
-cd bosh-src
+git clone bosh-src bosh-src-tagged
+
+cd bosh-src-tagged
 
 git tag stable-$VERSION
-
-git pull
-
