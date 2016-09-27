@@ -144,6 +144,9 @@ jobs:
           - build-stemcell
     - task: tag
       file: bosh-src/ci/pipelines/stemcell/tasks/tag.yml
+    - put: bosh-src
+      params:
+        repository: bosh-src
 
   - name: publish-stemcells
     serial: true
@@ -545,8 +548,60 @@ resources:
   - name: bosh-src
     type: git
     source:
-      uri: https://github.com/mingxiao/bosh.git
+      uri: git@github.com:mingxiao/bosh.git
       branch: develop
+      private_key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        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
+        -----END RSA PRIVATE KEY-----
 #      branch: {{stemcell-branch}}
 
   - name: version
