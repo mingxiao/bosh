@@ -91,7 +91,7 @@ jobs:
             - build-azure-hyperv-ubuntu-trusty
             - build-google-kvm-ubuntu-trusty
             - build-openstack-kvm-ubuntu-trusty
-            - build-softlayer-xen-ubuntu-trusty
+#            - build-softlayer-xen-ubuntu-trusty
             - build-vsphere-esxi-ubuntu-trusty
             - build-vcloud-esxi-ubuntu-trusty
             - build-aws-xen-centos-7
@@ -109,7 +109,7 @@ jobs:
             - build-azure-hyperv-ubuntu-trusty
             - build-google-kvm-ubuntu-trusty
             - build-openstack-kvm-ubuntu-trusty
-            - build-softlayer-xen-ubuntu-trusty
+#            - build-softlayer-xen-ubuntu-trusty
             - build-vsphere-esxi-ubuntu-trusty
             - build-vcloud-esxi-ubuntu-trusty
             - build-aws-xen-centos-7
@@ -129,6 +129,18 @@ jobs:
           BOSH_DIRECTOR_ADDRESS: {{stemcell-test-director-address}}
           BOSH_DIRECTOR_USERNAME: {{stemcell-test-director-username}}
           BOSH_DIRECTOR_PASSWORD: {{stemcell-test-director-password}}
+
+  - name: tag-stemcell
+    serial: true
+    plan:
+    - aggregate:
+      - get: version
+        trigger: true
+        passed: [test-stemcells]
+      - get: bosh-src
+        passed: [test-stemcells]
+    - task: tag
+      file: bosh-src/ci/pipelines/stemcell/tasks/tag.yml
 
   - name: publish-stemcells
     serial: true
@@ -530,7 +542,7 @@ resources:
   - name: bosh-src
     type: git
     source:
-      uri: https://github.com/cloudfoundry/bosh.git
+      uri: https://github.com/mingxiao/bosh.git
       branch: {{stemcell-branch}}
 
   - name: version
