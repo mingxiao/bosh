@@ -4,6 +4,7 @@ groups:
     jobs:
       - build-stemcell
       - publish-stemcells
+      - tag-stemcell
       - test-stemcells
       - build-warden-boshlite-centos-7
       - build-warden-boshlite-ubuntu-trusty
@@ -136,9 +137,11 @@ jobs:
     - aggregate:
       - get: version
         trigger: true
-        passed: [test-stemcells]
+        passed:
+          - build-stemcell
       - get: bosh-src
-        passed: [test-stemcells]
+        passed:
+          - build-stemcell
     - task: tag
       file: bosh-src/ci/pipelines/stemcell/tasks/tag.yml
 
