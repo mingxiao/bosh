@@ -543,7 +543,8 @@ resources:
     type: git
     source:
       uri: https://github.com/mingxiao/bosh.git
-      branch: {{stemcell-branch}}
+      branch: develop
+#      branch: {{stemcell-branch}}
 
   - name: version
     type: semver
