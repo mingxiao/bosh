@@ -14,4 +14,4 @@ outputs:
   - name: bosh-src-merged
 
 run:
-  path: bosh-src-develop/ci/pipelines/promote-release/tasks/master-merge.sh
+  path: bosh-src-develop/ci/pipelines/promote-release/tasks/merge-master.sh
