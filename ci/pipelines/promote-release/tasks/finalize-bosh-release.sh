@@ -11,7 +11,7 @@ chmod +x $GO_CLI_PATH
 
 export DEV_RELEASE_PATH=$ROOT_PATH/bosh-dev-release/bosh*.tgz
 
-git clone ./bosh-src $PROMOTED_REPO
+git clone ./bosh-src-develop $PROMOTED_REPO
 cd $PROMOTED_REPO
 git status
 
@@ -31,7 +31,7 @@ $GO_CLI_PATH finalize-release $DEV_RELEASE_PATH
 git add -A
 git status
 
-git config --global user.email "mxiao@pivotal.io"
-git config --global user.name "Ming Xiao"
+git config --global user.email "ci@localhost"
+git config --global user.name "CI Bot"
 
 git commit -m 'Adding final release via concourse'
