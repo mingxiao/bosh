@@ -12,9 +12,7 @@ chmod +x $GO_CLI_PATH
 export DEV_RELEASE_PATH=$ROOT_PATH/bosh-dev-release/bosh*.tgz
 
 cd bosh-src
-#git status
-
-# git clean -dfx
+git status
 
 cd release
 
@@ -31,8 +29,7 @@ EOF
 
 $GO_CLI_PATH finalize-release $DEV_RELEASE_PATH
 
-# git status
+git status
 
-# commit
-
-# possibly push?
+git add .
+git commit -m 'Adding final release via concourse'
