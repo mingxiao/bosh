@@ -1,0 +1,44 @@
+---
+jobs:
+  - name: finalize-bosh-release
+    serial: true
+    plan:
+      - aggregate:
+        - get: bosh-src
+        - get: bosh-dev-release
+          resource: bosh-candidate-release-tarballs
+        - get: bosh-cli
+      - task: promote-release
+        file: bosh-src/ci/pipelines/promote-release/tasks/finalize-bosh-release.yml
+        params:
+          BLOBSTORE_ACCESS_KEY_ID: {{bosh_release_access_key_id}}
+          BLOBSTORE_SECRET_ACCESS_KEY: {{bosh_release_secret_access_key}}
+      - {put: bosh-promote-src, params: {repository: bosh-src}}
+
+resources:
+  - name: bosh-candidate-release-tarballs
+    type: s3
+    source:
+      bucket: {{candidate_release_bucket}}
+      regexp: "bosh.*\\+dev\\.(\\d+)\\.tgz" # bosh-257.9+dev.1472844900.tgz
+
+  - name: bosh-cli
+    type: s3
+    source:
+      regexp: bosh-cli-(.*)-linux-amd64
+      bucket: {{bosh_cli_aws_s3_release_bucket}}
+      region_name: {{bosh_cli_aws_s3_release_bucket_region}}
+
+  - name: bosh-src
+    type: git
+    source:
+      uri: {{bosh_src_url}}
+      branch: {{branch}}
+      private_key: {{bosh_src_key}}
+
+  - name: bosh-promote-src
+    type: git
+    source:
+      uri: {{bosh_src_url}}
+      branch: {{promote_branch}}
+      private_key: {{bosh_src_key}}
