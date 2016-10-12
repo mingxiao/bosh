@@ -11,6 +11,9 @@ inputs:
   - name: bosh-dev-release
   - name: bosh-cli
 
+outputs:
+  - name: bosh-promote-src
+
 params:
   BLOBSTORE_ACCESS_KEY_ID: replace-me
   BLOBSTORE_SECRET_ACCESS_KEY: replace-me
