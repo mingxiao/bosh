@@ -29,10 +29,10 @@ EOF
 
 $GO_CLI_PATH finalize-release $DEV_RELEASE_PATH
 
+git add .
 git status
 
 git config --global user.email "mxiao@pivotal.io"
 git config --global user.name "Ming Xiao"
 
-git add .
 git commit -m 'Adding final release via concourse'
