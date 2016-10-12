@@ -14,6 +14,8 @@ jobs:
           BLOBSTORE_ACCESS_KEY_ID: {{bosh_release_access_key_id}}
           BLOBSTORE_SECRET_ACCESS_KEY: {{bosh_release_secret_access_key}}
       - put: bosh-promote-src
+        params:
+          repository: bosh-src-with-final
 
 resources:
   - name: bosh-candidate-release-tarballs
