@@ -8,6 +8,9 @@ jobs:
         - get: bosh-dev-release
           resource: bosh-candidate-release-tarballs
         - get: bosh-cli
+        - get: candidate-version
+          params:
+            bump: major
       - task: promote-release
         file: bosh-src-develop/ci/pipelines/promote-release/tasks/finalize-bosh-release.yml
         params:
@@ -17,8 +20,6 @@ jobs:
         params:
           repository: bosh-src-with-final
       - put: candidate-version
-        params:
-          bump: major
   - name: merge-master
     serial: true
     plan:

@@ -2,8 +2,7 @@
 
 set -eux
 
-SEMVER=$(cat candidate-version/version)
-VERSION="$( cut -d '.0' -f 1 <<< "$SEMVER" )"
+VERSION=$( cat candidate-version/number | sed 's/\.0$//;s/\.0$//' )
 
 export ROOT_PATH=$PWD
 PROMOTED_REPO=$PWD/bosh-src-with-final
