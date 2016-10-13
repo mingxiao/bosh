@@ -20,6 +20,8 @@ jobs:
         params:
           repository: bosh-src-with-final
       - put: candidate-version
+        params:
+          file: candidate-version/version
   - name: merge-master
     serial: true
     plan:
